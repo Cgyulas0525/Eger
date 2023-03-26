@@ -31,7 +31,7 @@
 
             $.ajaxSetup();
 
-            var table = $('.partners-table').DataTable({
+            var table = $('.indextable').DataTable({
                 serverSide: true,
                 scrollY: 390,
                 scrollX: true,

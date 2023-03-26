@@ -26,6 +26,12 @@ use App\Http\Controllers\PartnerquestionnariesController;
 use App\Http\Controllers\ClientvoucherusedController;
 use App\Http\Controllers\ClientquestionnariedetailsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\LogitemsController;
+use App\Http\Controllers\LogitemtypesController;
+use App\Http\Controllers\UsertypesController;
+use App\Http\Controllers\PartnerTypesController;
+use App\Http\Controllers\DetailTypesController;
 
 /*
 |--------------------------------------------------------------------------
