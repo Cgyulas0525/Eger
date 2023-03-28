@@ -117,6 +117,12 @@ class ValidationController extends Controller
             return redirect(route($route));
         }
 
+
+        if ($table == "Clients") {
+            $this->basicVouchersSend($record);
+            $this->basicQuestionnariesSend($record);
+        }
+
         $record->validated = $record->validated == 0 ? 1 : 0;
         $record->local = ClientToolsController::localCheck($record->postcode);
         $record->save();

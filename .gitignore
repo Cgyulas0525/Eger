@@ -22,9 +22,11 @@ fields_sample.json
 /storage/app/
 /storage/debugbar/
 /storage/framework/
+/storage/logs/
+/storage/output/
 /plugins
 /dist
 /asset/vendor
-/public/print
+/public/print/
 /tests
 /docs/
