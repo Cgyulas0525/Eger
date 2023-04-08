@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kirschbaum\PowerJoins\PowerJoins;
 
 /**
  * Class Partners
@@ -27,19 +28,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Partners extends Model
 {
-    use SoftDeletes;
-
-    use HasFactory;
+    use SoftDeletes, HasFactory, PowerJoins;
 
     public $table = 'partners';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'id',

@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kirschbaum\PowerJoins\PowerJoins;
 
 /**
  * Class Logitemtypes
@@ -16,12 +17,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Logitemtypes extends Model
 {
-    use SoftDeletes;
-
-    use HasFactory;
+    use SoftDeletes, HasFactory, PowerJoins;
 
     public $table = 'logitemtypes';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -59,5 +58,5 @@ class Logitemtypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    
+
 }

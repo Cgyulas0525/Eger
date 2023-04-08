@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kirschbaum\PowerJoins\PowerJoins;
 
 /**
  * Class Usertypes
@@ -16,9 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Usertypes extends Model
 {
-    use SoftDeletes;
-
-    use HasFactory;
+    use SoftDeletes, HasFactory, PowerJoins;
 
     public $table = 'usertypes';
 

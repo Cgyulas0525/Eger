@@ -6,6 +6,8 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use Kirschbaum\PowerJoins\PowerJoins;
+
 /**
  * Class Vouchers
  * @package App\Models
@@ -25,19 +27,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Vouchers extends Model
 {
-    use SoftDeletes;
-
-    use HasFactory;
+    use SoftDeletes, HasFactory, PowerJoins;
 
     public $table = 'vouchers';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
