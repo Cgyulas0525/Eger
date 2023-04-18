@@ -70,7 +70,7 @@ class Vouchertypes extends Model
     ];
 
     public function voucher() {
-        return $this->hasMany(Vouchers::class);
+        return $this->hasMany(Vouchers::class, 'vouchertype_id');
     }
 
 }

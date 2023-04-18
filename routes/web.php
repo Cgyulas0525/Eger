@@ -26,12 +26,12 @@ use App\Http\Controllers\PartnerquestionnariesController;
 use App\Http\Controllers\ClientvoucherusedController;
 use App\Http\Controllers\ClientquestionnariedetailsController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\LogitemsController;
-use App\Http\Controllers\LogitemtypesController;
 use App\Http\Controllers\UsertypesController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PartnerTypesController;
 use App\Http\Controllers\DetailTypesController;
+use App\Http\Controllers\LogitemtypesController;
+use App\Http\Controllers\LogitemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +73,6 @@ Route::get('beforeActivationWithParam/{table}/{id}/{route}/{param}', [ChangeActi
 
 Route::get('Activation/{id}/{table}/{route}', [ChangeActiveController::class, 'Activation'])->name('Activation');
 Route::get('ActivationWithParam/{table}/{id}/{route}/{param}', [ChangeActiveController::class, 'ActivationWithParam'])->name('ActivationWithParam');
-Route::get('deActivating', [ChangeActiveController::class, 'deActivating'])->name('deActivating');
 
 Route::get('settingIndex', [SettingController::class, 'index'])->name('settingIndex');
 Route::get('communicationIndex', [SettingController::class, 'communicationIndex'])->name('communicationIndex');

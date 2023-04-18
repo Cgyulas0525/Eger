@@ -24,10 +24,7 @@ class Settlements extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -61,15 +58,15 @@ class Settlements extends Model
     ];
 
     public function validpostcodes() {
-        return $this->hasMany(Validpostcodes::class);
+        return $this->hasMany(Validpostcodes::class, 'settlement_id');
     }
 
     public function partners() {
-        return $this->hasMany(Partners::class);
+        return $this->hasMany(Partners::class, 'settlement_id');
     }
 
     public function clients() {
-        return $this->hasMany(Clients::class);
+        return $this->hasMany(Clients::class, 'settlement_id');
     }
 
 

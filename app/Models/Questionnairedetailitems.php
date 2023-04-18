@@ -24,10 +24,7 @@ class Questionnairedetailitems extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'questionnariedetail_id',
@@ -59,7 +56,7 @@ class Questionnairedetailitems extends Model
     ];
 
     public function questionnairedetail() {
-        return $this->belongsTo(Questionnairedetails::class);
+        return $this->belongsTo(Questionnairedetails::class, 'questionnariedetail_id');
     }
 
 

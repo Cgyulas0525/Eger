@@ -28,10 +28,7 @@ class Questionnaires extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -78,15 +75,15 @@ class Questionnaires extends Model
     ];
 
     public function questionnairedetail() {
-        return $this->hasMany(Questionnairedetails::class);
+        return $this->hasMany(Questionnairedetails::class, 'questionnaire_id');
     }
 
     public function clientquestionnarie() {
-        return $this->hasMany(Clientquestionnaries::class);
+        return $this->hasMany(Clientquestionnaries::class, 'questionnarie_id');
     }
 
     public function partnerquestionnarie() {
-        return $this->hasMany(Partnerquestionnaries::class);
+        return $this->hasMany(Partnerquestionnaries::class, 'questionnarie_id');
     }
 
 }

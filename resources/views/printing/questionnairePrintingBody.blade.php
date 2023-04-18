@@ -27,6 +27,8 @@
     <div class="col-xs-12 text-center">
         <p class="text-bold 600">{{ config('app.name') }} az Ön számára űrlapot küldött ki.</p>
         <strong>Az űrlap QR kódja:</strong>
+        <br/>
+        <br/>
         <img src="data:image/png;base64, {!! base64_encode(QrCode::size(200)->generate($questionnaire->qrcode)) !!} ">
     </div>
 </div>

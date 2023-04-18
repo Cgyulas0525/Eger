@@ -100,29 +100,29 @@ class Partners extends Model
     protected $appends = ['fullAddress'];
 
     public function settlement() {
-        return $this->belongsTo(Settlements::class);
+        return $this->belongsTo(Settlements::class, 'settlement_id');
     }
 
     public function partnertype() {
-        return $this->belongsTo(PartnerTypes::class);
+        return $this->belongsTo(PartnerTypes::class, 'partnertype_id');
     }
 
     public function getFullAddressAttribute() {
         return ((!empty($this->postcode) ? $this->postcode : "") . " " .
-               (!empty($this->settlement_id) ? $this->settlement->name : ""). " "
-               (!empty($this->address) ? $this->address : ""));
+            (!empty($this->settlement_id) ? $this->settlement->name : ""). " " .
+            (!empty($this->address) ? $this->address : ""));
     }
 
     public function partnercontact() {
-        return $this->hasMany(Partnercontacts::class);
+        return $this->hasMany(Partnercontacts::class, 'partner_id');
     }
 
     public function voucher() {
-        return $this->hasMany(Vouchers::class);
+        return $this->hasMany(Vouchers::class, 'partner_id');
     }
 
     public function partnerquestionnarie() {
-        return $this->hasMany(Partnerquestionnaries::class);
+        return $this->hasMany(Partnerquestionnaries::class, 'partner_id');
     }
 
 }

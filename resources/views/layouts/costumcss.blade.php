@@ -123,7 +123,7 @@
         height: 2em;
     }
     .main-sidebar {
-        background-color: #343a40 !important
+        background-color: #023c75 !important
     }
 
     .brand-text {
@@ -131,11 +131,11 @@
     }
 
     .main-header {
-        background-color: #343a40 !important
+        background-color: #023c75 !important
     }
 
     .main-footer {
-        background-color: #343a40 !important;
+        background-color: #023c75 !important;
         color: #FFFFFF !important;
     }
 

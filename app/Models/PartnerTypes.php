@@ -24,10 +24,7 @@ class PartnerTypes extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -59,7 +56,7 @@ class PartnerTypes extends Model
     ];
 
     public function partner() {
-        return $this->hasMany(Partners::class);
+        return $this->hasMany(Partners::class, 'partnertype_id');
     }
 
 

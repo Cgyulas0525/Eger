@@ -1,7 +1,7 @@
 <div class="row w-100">
     <div class="row text-center w-100">
         <p class="text-center w-100 fs-6 mt-3">
-            <strong>{{ $voucher->partnerName }} voucher {{ $client->name }} részére</strong>
+            <strong>{{ $voucher->partner->name }} voucher {{ $client->name }} részére</strong>
         </p>
         <p class="text-center w-100 mt-3">
             <strong>{{ $voucher->name }}</strong>
@@ -14,7 +14,7 @@
     <div class="col-xs-6 w-50">
         Kiállító:
         <address>
-            <strong>{{ $voucher->partnerName }}</strong><br>
+            <strong>{{ $voucher->partner->name }}</strong><br>
         </address>
     </div>
     <!-- /.col -->
@@ -32,8 +32,10 @@
 <!-- Table row -->
 <div class="row mt-6">
     <div class="col-xs-12 text-center">
-        <p class="text-bold 600">{{ $voucher->partnerName }} az Ön számára vouchert állított ki.</p>
-        <h3>A voucher QR kódja:</h3>
+        <p class="text-bold 600">{{ $voucher->partner->name }} az Ön számára vouchert állított ki.</p>
+        <strong>A voucher QR kódja:</strong>
+        <br/>
+        <br/>
         <img src="data:image/png;base64, {!! base64_encode(QrCode::size(200)->generate($voucher->qrcode)) !!} ">
     </div>
 </div>

@@ -54,22 +54,22 @@
             <div class="card-footer p-0">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('partners.index') }}" class="nav-link text-black text-bold">
                             {{ __('Összesen') }} <span class="float-right badge bg-primary">{{ App\Models\Partners::count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('partners.index') }}" class="nav-link text-black text-bold">
                             {{ __('Aktív') }} <span class="float-right badge bg-info">{{ App\Models\Partners::where('active', 1)->get()->count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('partners.index') }}" class="nav-link text-black text-bold">
                             {{ __('Aktív helyi') }} <span class="float-right badge bg-success">{{ ToolsClass::partnersLocalActive([1], [0,1])->count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('partners.index') }}" class="nav-link text-black text-bold">
                             {{ __('Aktív nem helyi') }} <span class="float-right badge bg-success">{{ ToolsClass::partnersNonLocalActive([1], [0,1])->count() }}</span>
                         </a>
                     </li>
@@ -93,22 +93,22 @@
             <div class="card-footer p-0">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('questionnaires.index') }}" class="nav-link text-black text-bold">
                             {{ __('Összesen') }} <span class="float-right badge bg-primary">{{ App\Models\Questionnaires::count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('questionnaires.index') }}" class="nav-link text-black text-bold">
                             {{ __('Aktív') }} <span class="float-right badge bg-info">{{ App\Models\Questionnaires::where('active', 1)->get()->count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('clients.index') }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('questionnaires.index') }}" class="nav-link text-black text-bold">
                             {{ __('Kiküldött') }} <span class="float-right badge bg-success">{{ App\Models\Clientquestionnaries::count() }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('validating', [1,0,2]) }}" class="nav-link text-black text-bold">
+                        <a href="{{ route('questionnaires.index') }}" class="nav-link text-black text-bold">
                             {{ __('Megválaszolt') }} <span class="float-right badge bg-danger">{{ App\Models\Clientquestionnaries::whereNotNull('retrieved')->get()->count() }}</span>
                         </a>
                     </li>

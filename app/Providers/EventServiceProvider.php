@@ -7,6 +7,10 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use App\Events\LoginHistory;
 use App\Listeners\storeUserLoginHistory;
+use App\Events\SendMail;
+use App\Listeners\SendMailFired;
+use App\Events\SendValidationMail;
+use App\Listeners\SendValidationMailFired;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,7 +25,13 @@ class EventServiceProvider extends ServiceProvider
         ],
         LoginHistory::class => [
             storeUserLoginHistory::class,
-        ]
+        ],
+        SendMail::class => [
+            SendMailFired::class,
+        ],
+        SendValidationMail::class => [
+            SendValidationMailFired::class,
+        ],
     ];
 
     /**

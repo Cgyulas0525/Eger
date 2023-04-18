@@ -8,7 +8,7 @@
                                                 'function' => number_format(ToolsClass::modelCount('Questionnaires'),0,",",".") ])
     @include('dashboard.dashboardWidgetItem', ['title' => 'Voucher',
                                                 'route' => 'vouchers.index',
-                                                'icon' => 'ion-pie-graph',
+                                                'icon' => 'ion ion-pie-graph',
                                                 'box' => 'small-box bg-danger',
                                                 'label' => 'Össz',
                                                 'endlabel' => 'db',
@@ -20,13 +20,12 @@
                                                 'label' => 'Össz',
                                                 'endlabel' => 'db',
                                                 'function' => number_format(ToolsClass::modelCount('Partners'),0,",",".") ])
-    @include('dashboard.dashboardWidgetItem', ['title' => 'Sorsolás',
-                                                'route' => 'partners.index',
+    @include('dashboard.dashboardWidgetItem', ['title' => 'Ügyfél',
+                                                'route' => 'clients.index',
                                                 'icon' => 'ion ion-bag',
                                                 'box' => 'small-box bg-info',
                                                 'label' => 'Össz',
                                                 'endlabel' => 'db',
-                                                'function' => number_format(0,0,",",".") ])
-{{--                                                'function' => number_format(ToolsClass::modelCount('lotteries'),0,",",".") ])--}}
+                                                'function' => number_format(ToolsClass::modelCount('Clients'),0,",",".") ])
 </div>
 

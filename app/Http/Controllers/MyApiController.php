@@ -3,29 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Settlements;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Validpostcodes;
-use Response;
 use DB;
 
-use App\Models\Partnerquestionnaries;
-use App\Classes\LogitemClass;
+use App\Actions\ValidPostcodesInsert;
+use App\Actions\PartnerQuestionnarieInsert;
+use App\Actions\PartnerQuestionnarieDelete;
 
 class MyApiController extends Controller
 {
+
     public static function insertValidPostcodesRecord(Request $request) {
         $s = Settlements::where('name', $request->get('settlement'))->first();
+        $validpostcodesinsert = new ValidPostcodesInsert();
         foreach (Settlements::where('name', $request->get('settlement'))->get() as $settlemen) {
-            $validpostcodes = new Validpostcodes();
-            $validpostcodes->settlement_id = $s->id;
-            $validpostcodes->postcode = $settlemen->postcode;
-            $validpostcodes->active = 1;
-            $validpostcodes->created_at = Carbon::now();
-            $validpostcodes->save();
-            $logitem = new LogitemClass();
-            $logitem->iudRecord(3, $validpostcodes->getTable(), $validpostcodes->id);
-
+            $validpostcodesinsert->handle($s->id, $settlemen->postcode);
         }
     }
 
@@ -43,22 +35,13 @@ class MyApiController extends Controller
                     ->first();
 
         if (!empty($partnerQuestionnarie)) {
-            DB::table('partnerquestionnaries')
-                ->where('partner_id', $request->get('partner'))
-                ->where('questionnarie_id', $request->get('questionnaire'))
-                ->update([
-                    'deleted_at' => null
-                ]);
+
+            $pd = new PartnerQuestionnarieDelete();
+            $pd->handle($request->get('partner'), $request->get('questionnaire'));
+
         } else {
-            $partnerQuestionnarie = new Partnerquestionnaries();
-
-            $partnerQuestionnarie->partner_id = $request->get('partner');
-            $partnerQuestionnarie->questionnarie_id = $request->get('questionnaire');
-            $partnerQuestionnarie->created_at = Carbon::now();
-
-            $partnerQuestionnarie->save();
-            $logitem = new LogitemClass();
-            $logitem->iudRecord(3, $partnerQuestionnarie->getTable(), $partnerQuestionnarie->id);
+            $partnerQuestionnarieInsert = new PartnerQuestionnarieInsert();
+            $partnerQuestionnarieInsert->handle($request->get('partner'), $request->get('questionnaire'));
         }
 
         return back();
@@ -72,12 +55,8 @@ class MyApiController extends Controller
      */
     public static function partnerUnhookQuestionnarie(Request $request) {
 
-        DB::table('partnerquestionnaries')
-            ->where('partner_id', $request->get('partner'))
-            ->where('questionnarie_id', $request->get('questionnaire'))
-            ->update([
-                'deleted_at' => Carbon::now()
-            ]);
+        $pd = new PartnerQuestionnarieDelete();
+        $pd->handle($request->get('partner'), $request->get('questionnaire'));
 
         return back();
     }

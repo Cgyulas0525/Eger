@@ -5,7 +5,6 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use Kirschbaum\PowerJoins\PowerJoins;
 
 /**
@@ -93,15 +92,15 @@ class Vouchers extends Model
     ];
 
     public function partner() {
-        return $this->belongsTo(Partners::class);
+        return $this->belongsTo(Partners::class, 'partner_id');
     }
 
     public function vouchertype() {
-        return $this->belongsTo(Vouchertypes::class);
+        return $this->belongsTo(Vouchertypes::class, 'vouchertype_id');
     }
 
     public function clientvoucher() {
-        return $this->hasMany(Clientvouchers::class);
+        return $this->hasMany(Clientvouchers::class, 'voucher_id');
     }
 
 

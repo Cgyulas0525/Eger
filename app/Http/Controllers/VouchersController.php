@@ -70,20 +70,13 @@ class VouchersController extends AppBaseController
 
             if ($request->ajax()) {
 
-                $data = Vouchers::joinRelationshipUsingAlias('partner', 't2')
-                                ->joinRelationshipUsingAlias('vouchertype', 't3')
-                                ->select('vouchers.*', 't2.name as partnerName', 't3.name as voucherTypeName')
-                                ->where('vouchers.active', 1)
-                                ->get();
-
-//                $data = DB::table('vouchers as t1')
-//                    ->join('partners as t2', 't2.id', '=', 't1.partner_id')
-//                    ->join('vouchertypes as t3', 't3.id', '=', 't1.vouchertype_id')
-//                    ->select('t1.*', 't2.name as partnerName', 't3.name as voucherTypeName')
-//                    ->whereNull('t1.deleted_at')
-//                    ->where('t1.active', 1)
-//                    ->get();
-
+                $data = DB::table('vouchers as t1')
+                    ->join('partners as t2', 't2.id', '=', 't1.partner_id')
+                    ->join('vouchertypes as t3', 't3.id', '=', 't1.vouchertype_id')
+                    ->select('t1.*', 't2.name as partnerName', 't3.name as voucherTypeName')
+                    ->whereNull('t1.deleted_at')
+                    ->where('t1.active', 1)
+                    ->get();
                 return $this->dwData($data);
 
             }

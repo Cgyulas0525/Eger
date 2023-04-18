@@ -27,10 +27,7 @@ class Clientvouchers extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'client_id',
@@ -62,7 +59,7 @@ class Clientvouchers extends Model
     public static $rules = [
         'client_id' => 'required|integer',
         'voucher_id' => 'required|integer',
-        'posted' => 'required',
+        'posted' => 'nullable',
         'used' => 'nullable',
         'description' => 'nullable|string|max:500',
         'created_at' => 'nullable',
@@ -71,15 +68,15 @@ class Clientvouchers extends Model
     ];
 
     public function voucher() {
-        return $this->belongsTo(Vouchers::class);
+        return $this->belongsTo(Vouchers::class, 'voucher_id');
     }
 
     public function client() {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Clients::class, 'client_id');
     }
 
     public function clientvoucherused() {
-        return $this->hasMany(Clientvoucherused::class);
+        return $this->hasMany(Clientvoucherused::class, 'clientvoucher_id');
     }
 
 

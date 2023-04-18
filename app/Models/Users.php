@@ -30,10 +30,7 @@ class Users extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'username',
@@ -82,7 +79,7 @@ class Users extends Model
     ];
 
     public function usertypes() {
-        return $this->belongsTo(Usertypes::class);
+        return $this->belongsTo(Usertypes::class, 'usertypes_id');
     }
 
 }

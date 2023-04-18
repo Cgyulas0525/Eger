@@ -29,10 +29,7 @@ class Partnercontacts extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'partner_id',
@@ -79,7 +76,7 @@ class Partnercontacts extends Model
     ];
 
     public function partner() {
-        return $this->belongsTo(Partners::class);
+        return $this->belongsTo(Partners::class, 'partner_id');
     }
 
 }

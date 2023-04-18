@@ -25,10 +25,7 @@ class Partnerquestionnaries extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'partner_id',
@@ -63,11 +60,11 @@ class Partnerquestionnaries extends Model
     ];
 
     public function partner() {
-        return $this->belongsTo(Partners::class);
+        return $this->belongsTo(Partners::class, 'partner_id');
     }
 
     public function questionnarie() {
-        return $this->belongsTo(Questionnaires::class);
+        return $this->belongsTo(Questionnaires::class, 'questionnarie_id');
     }
 
 }

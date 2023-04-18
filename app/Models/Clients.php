@@ -45,10 +45,7 @@ class Clients extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -139,15 +136,15 @@ class Clients extends Model
     protected $appends = ['fullAddress', 'genderName', 'activeName', 'localName', 'validatedName'];
 
     public function settlement() {
-        return $this->belongsTo(Settlements::class);
+        return $this->belongsTo(Settlements::class, 'settlement_id');
     }
 
     public function clientvoucher() {
-        return $this->hasMany(Clientvouchers::class);
+        return $this->hasMany(Clientvouchers::class, 'client_id');
     }
 
     public function clientquestionnarie() {
-        return $this->hasMany(Clientquestionnaries::class);
+        return $this->hasMany(Clientquestionnaries::class, 'client_id');
     }
 
 

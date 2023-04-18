@@ -87,13 +87,13 @@
         <p>{{ __('Űrlapok') }}</p>
     </a>
 </li>
-<li class="nav-item">
-    <a href="{{ route('lotteries.index') }}"
-       class="nav-link {{ Request::is('lotteries*') ? 'active' : '' }}">
-        <i class="fas fa-money-check-alt"></i>
-        <p>{{ __('Sorsolások') }}</p>
-    </a>
-</li>
+{{--<li class="nav-item">--}}
+{{--    <a href="{{ route('lotteries.index') }}"--}}
+{{--       class="nav-link {{ Request::is('lotteries*') ? 'active' : '' }}">--}}
+{{--        <i class="fas fa-money-check-alt"></i>--}}
+{{--        <p>{{ __('Sorsolások') }}</p>--}}
+{{--    </a>--}}
+{{--</li>--}}
 
 <li class="nav-item has-treeview">
     <a href="#" class="nav-link ">
