@@ -5,9 +5,11 @@ namespace App\Traits;
 use App\Classes\Models\ModelPath;
 use App\Actions\LogItemInsert;
 
-trait ActivationTrait {
+trait ActivationTrait
+{
 
-    public function Activation($id, $table, $route) {
+    public function Activation($id, $table, $route)
+    {
         $route .= '.index';
         $model_name = ModelPath::makeModelPath($table);
         $record = $model_name::find($id);
@@ -20,7 +22,6 @@ trait ActivationTrait {
         $record->save();
         $logitem = new LogItemInsert();
         $logitem->iudRecord($record->active == 1 ? 6 : 7, $record->getTable(), $record->id);
-
 
         return redirect(route($route));
     }

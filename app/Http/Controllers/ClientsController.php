@@ -6,21 +6,17 @@ use App\Http\Requests\CreateClientsRequest;
 use App\Http\Requests\UpdateClientsRequest;
 use App\Repositories\ClientsRepository;
 use App\Http\Controllers\AppBaseController;
-
 use App\Models\Clients;
 use App\Classes\LogitemClass;
-
 use Illuminate\Http\Request;
-use Flash;
 use Response;
-use Auth;
 use DB;
 use DataTables;
 use myUser;
 
 class ClientsController extends AppBaseController
 {
-    /** @var ClientsRepository $clientsRepository*/
+    /** @var ClientsRepository $clientsRepository */
     private $clientsRepository;
     private $logitem;
 
@@ -34,26 +30,26 @@ class ClientsController extends AppBaseController
     {
         return Datatables::of($data)
             ->addIndexColumn()
-            ->addColumn('action', function($row){
+            ->addColumn('action', function ($row) {
                 $btn = '';
-                if ($row->validated == 0)  {
-                    $btn = $btn.'<a href="' . route('beforeValidation', [$row->id, 'Clients', 'clients']) . '"
+                if ($row->validated == 0) {
+                    $btn = $btn . '<a href="' . route('beforeValidation', [$row->id, 'Clients', 'clients']) . '"
                                          class="btn btn-danger btn-sm deleteProduct" title="Validálás"><i class="fas fa-user-edit"></i></a>';
                 } else {
                     if ($row->active == 1) {
-                        $btn = $btn.'<a href="' . route('clients.edit', [$row->id]) . '"
+                        $btn = $btn . '<a href="' . route('clients.edit', [$row->id]) . '"
                                  class="edit btn btn-success btn-sm editProduct" title="Módosítás"><i class="fa fa-paint-brush"></i></a>';
-                        $btn = $btn.'<a href="' . route('beforeActivation', [$row->id, 'Clients', 'clients']) . '"
+                        $btn = $btn . '<a href="' . route('beforeActivation', [$row->id, 'Clients', 'clients']) . '"
                                              class="btn btn-warning btn-sm deleteProduct" title="Deaktiválás"><i class="fas fa-user-check"></i></a>';
                     } else {
-                        $btn = $btn.'<a href="' . route('beforeActivation', [$row->id, 'Clients', 'clients']) . '"
+                        $btn = $btn . '<a href="' . route('beforeActivation', [$row->id, 'Clients', 'clients']) . '"
                                              class="btn btn-danger btn-sm deleteProduct" title="Aktiválás"><i class="fas fa-user-alt-slash"></i></a>';
                     }
-                    $btn = $btn.'<a href="' . route('clientVouchers', [$row->id]) . '"
+                    $btn = $btn . '<a href="' . route('clientVouchers', [$row->id]) . '"
                                  class="edit btn btn-info btn-sm editProduct" title="Voucherek"><i class="fas fa-ticket-alt"></i></a>';
-                    $btn = $btn.'<a href="' . route('clientQuestionnaries', [$row->id]) . '"
+                    $btn = $btn . '<a href="' . route('clientQuestionnaries', [$row->id]) . '"
                                  class="edit btn btn-secondary btn-sm editProduct" title="Űrlapok"><i class="fas fa-question-circle"></i></a>';
-                    $btn = $btn.'<a href="' . route('clientVouchers', [$row->id]) . '"
+                    $btn = $btn . '<a href="' . route('clientVouchers', [$row->id]) . '"
                                  class="edit btn btn-primary btn-sm editProduct" title="Sorsolások"><i class="fas fa-money-check-alt"></i></a>';
                 }
                 return $btn;
@@ -72,7 +68,7 @@ class ClientsController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if( myUser::check() ){
+        if (myUser::check()) {
 
             if ($request->ajax()) {
 
@@ -92,7 +88,7 @@ class ClientsController extends AppBaseController
 
     public function clientsIndex(Request $request, $active = null, $validated = null, $local = null)
     {
-        if( myUser::check() ){
+        if (myUser::check()) {
 
             if ($request->ajax()) {
 
@@ -100,22 +96,22 @@ class ClientsController extends AppBaseController
                     ->join('settlements as t3', 't3.id', '=', 't1.settlement_id')
                     ->select('t1.*', DB::raw('concat(t1.postcode, " ", t3.name, " ", t1.address) as fulladdress'), 't3.name as settlementName')
                     ->whereNull('t1.deleted_at')
-                    ->where( function($query) use ($active) {
-                        if (is_null($active) || $active == -9999 ) {
+                    ->where(function ($query) use ($active) {
+                        if (is_null($active) || $active == -9999) {
                             $query->whereNotNull('t1.active');
                         } else {
                             $query->where('t1.active', '=', $active);
                         }
                     })
-                    ->where( function($query) use ($validated) {
-                        if (is_null($validated) || $validated == 2 ) {
+                    ->where(function ($query) use ($validated) {
+                        if (is_null($validated) || $validated == 2) {
                             $query->whereNotNull('t1.validated');
                         } else {
                             $query->where('t1.validated', '=', $validated);
                         }
                     })
-                    ->where( function($query) use ($local) {
-                        if (is_null($local) || $local == 2 ) {
+                    ->where(function ($query) use ($local) {
+                        if (is_null($local) || $local == 2) {
                             $query->whereNotNull('t1.local');
                         } else {
                             $query->where('t1.local', '=', $local);
@@ -256,9 +252,9 @@ class ClientsController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -279,7 +275,7 @@ class ClientsController extends AppBaseController
      *
      * return array
      */
-    public static function DDDW() : array
+    public static function DDDW(): array
     {
         return [" "] + clients::orderBy('name')->pluck('name', 'id')->toArray();
     }
