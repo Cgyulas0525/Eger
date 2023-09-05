@@ -99,7 +99,7 @@ class Vouchers extends Model
         return $this->belongsTo(Vouchertypes::class, 'vouchertype_id');
     }
 
-    public function clientvoucher() {
+    public function clientvouchers() {
         return $this->hasMany(Clientvouchers::class, 'voucher_id');
     }
 

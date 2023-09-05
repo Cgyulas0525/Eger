@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -74,7 +75,7 @@ class Questionnaires extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function questionnairedetail() {
+    public function questionnairedetails() {
         return $this->hasMany(Questionnairedetails::class, 'questionnaire_id');
     }
 
@@ -84,6 +85,18 @@ class Questionnaires extends Model
 
     public function partnerquestionnarie() {
         return $this->hasMany(Partnerquestionnaries::class, 'questionnarie_id');
+    }
+
+    public function questionnairedetailitems(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Questionnairedetailitems::class,
+            Questionnairedetails::class,
+            'questionnaire_id', // Foreign key on the environments table...
+            'questionnariedetail_id', // Foreign key on the deployments table...
+            'id', // Local key on the projects table...
+            'id' // Local key on the environments table...
+        );
     }
 
 }

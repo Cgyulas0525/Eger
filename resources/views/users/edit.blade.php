@@ -29,7 +29,7 @@
 
             <div class="card-footer">
                 {!! Form::submit(__('Ment'), ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('users.index') }}" class="btn btn-default">{{ __('kilép') }}</a>
+                <a href="{{ route('users.index') }}" class="btn btn-default">{{ __('Kilép') }}</a>
             </div>
 
            {!! Form::close() !!}

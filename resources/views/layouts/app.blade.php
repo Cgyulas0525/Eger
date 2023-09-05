@@ -63,6 +63,7 @@
 
     <link rel="stylesheet" href="https://cdn.datatables.net/rowgroup/1.2.0/css/rowGroup.dataTables.min.css">
 
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
     @yield('third_party_stylesheets')
 
@@ -211,6 +212,8 @@
 
 <script src="https://cdn.datatables.net/rowgroup/1.2.0/js/dataTables.rowGroup.min.js"></script>
 <script src="https://cdn.datatables.net/scroller/2.0.7/js/dataTables.scroller.min.js"></script>
+
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
 <script>
     $(function () {

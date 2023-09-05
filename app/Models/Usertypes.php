@@ -55,7 +55,7 @@ class Usertypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function user() {
+    public function users() {
         return $this->hasMany(Users::class, 'usertypes_id');
     }
 

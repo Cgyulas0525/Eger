@@ -69,7 +69,7 @@ class Vouchertypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function voucher() {
+    public function vouchers() {
         return $this->hasMany(Vouchers::class, 'vouchertype_id');
     }
 

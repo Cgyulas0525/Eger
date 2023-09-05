@@ -32,6 +32,7 @@ use App\Http\Controllers\PartnerTypesController;
 use App\Http\Controllers\DetailTypesController;
 use App\Http\Controllers\LogitemtypesController;
 use App\Http\Controllers\LogitemsController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,3 +160,5 @@ Route::get('clientVoucherUsedindex/{id}', [ClientvoucherusedController::class, '
 
 Route::resource('clientquestionnariedetails',ClientquestionnariedetailsController::class);
 Route::get('cqdIndex/{id}', [ClientquestionnariedetailsController::class, 'cqdIndex'])->name('cqdIndex');
+
+Route::post('filepondupload', [UploadController::class, 'store']);

@@ -65,7 +65,7 @@ class DetailTypes extends Model
         return $this->listing == 1 ? 'Igen' : 'Nem';
     }
 
-    public function questionnairedetail() {
+    public function questionnairedetails() {
         return $this->hasMany(Questionnairedetails::class, 'detailtype_id');
     }
 

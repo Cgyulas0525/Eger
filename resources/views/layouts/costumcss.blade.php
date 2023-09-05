@@ -1,5 +1,17 @@
 <style>
 
+    .filepond--drop-label {
+        color: #4c4e53;
+    }
+
+    .filepond--label-action {
+        text-decoration-color: #babdc0;
+    }
+
+    .filepond--panel-root {
+        background-color: #edf0f4;
+    }
+
     .finance-button-container{
         display: flex;
         justify-content: center;

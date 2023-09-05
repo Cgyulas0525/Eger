@@ -78,7 +78,7 @@ class Users extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function usertypes() {
+    public function usertype() {
         return $this->belongsTo(Usertypes::class, 'usertypes_id');
     }
 

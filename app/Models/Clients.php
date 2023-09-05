@@ -139,11 +139,11 @@ class Clients extends Model
         return $this->belongsTo(Settlements::class, 'settlement_id');
     }
 
-    public function clientvoucher() {
+    public function clientvouchers() {
         return $this->hasMany(Clientvouchers::class, 'client_id');
     }
 
-    public function clientquestionnarie() {
+    public function clientquestionnaries() {
         return $this->hasMany(Clientquestionnaries::class, 'client_id');
     }
 

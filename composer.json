@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "barryvdh/laravel-dompdf": "^1.0",
         "doctrine/dbal": "~2.3",
         "fideloper/proxy": "^4.4",
@@ -25,6 +25,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.2",
+        "rahulhaque/laravel-filepond": "^1.10",
         "realrashid/sweet-alert": "^5.1",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "yajra/laravel-datatables": "1.5",

@@ -67,7 +67,7 @@ class Clientquestionnariedetails extends Model
         return $this->belongsTo(Clientquestionnaries::class, 'clientquestionnarie_id');
     }
 
-    public function questionnariedetail() {
+    public function questionnairedetail() {
         return $this->belongsTo(Questionnairedetails::class, 'questionnariedetail_id');
     }
 

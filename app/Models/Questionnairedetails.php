@@ -87,11 +87,11 @@ class Questionnairedetails extends Model
         return $this->belongsTo(DetailTypes::class, 'detailtype_id');
     }
 
-    public function questionnairedetailitem() {
+    public function questionnairedetailitems() {
         return $this->hasMany(Questionnairedetailitems::class, 'questionnariedetail_id');
     }
 
-    public function clientquestionnariedetail() {
+    public function clientquestionnariedetails() {
         return $this->hasMany(Clientquestionnariedetails::class, 'questionnariedetail_id');
     }
 

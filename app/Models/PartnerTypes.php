@@ -55,7 +55,7 @@ class PartnerTypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function partner() {
+    public function partners() {
         return $this->hasMany(Partners::class, 'partnertype_id');
     }
 

@@ -113,15 +113,15 @@ class Partners extends Model
             (!empty($this->address) ? $this->address : ""));
     }
 
-    public function partnercontact() {
+    public function partnercontacts() {
         return $this->hasMany(Partnercontacts::class, 'partner_id');
     }
 
-    public function voucher() {
+    public function vouchers() {
         return $this->hasMany(Vouchers::class, 'partner_id');
     }
 
-    public function partnerquestionnarie() {
+    public function partnerquestionnaries() {
         return $this->hasMany(Partnerquestionnaries::class, 'partner_id');
     }
 
