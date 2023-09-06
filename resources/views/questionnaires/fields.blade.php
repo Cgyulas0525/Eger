@@ -19,7 +19,7 @@
         </div>
         <div class="form-group col-sm-3">
             {!! Form::label('basicpackage', __('Alapcsomag:')) !!}
-            {!! Form::select('basicpackage', \App\Classes\ToolsClass::yesNoDDDW(), isset($questionnaires) ? $questionnaires->basicpackage : 0,
+            {!! Form::select('basicpackage', App\Enums\YesNoEnum::values(), isset($questionnaires) ? $questionnaires->basicpackage : 0,
                     ['class'=>'select2 form-control', 'id' => 'basicpackage']) !!}
         </div>
         <div class="form-group col-sm-3">

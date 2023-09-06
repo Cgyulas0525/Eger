@@ -7,7 +7,8 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
-
+use App\Enums\YesNoEnum;
+use App\Enums\GenderEnum;
 
 /**
  * Class Clients
@@ -155,18 +156,18 @@ class Clients extends Model
     }
 
     public function getGenderNameAttribute() {
-        return !empty($this->gender) ? ToolsClass::getGenderName($this->gender) : "";
+        return !empty($this->gender) ? GenderEnum::getValue($this->gender) : "";
     }
 
     public function getActiveNameAttribute() {
-        return ($this->active == 0) ? "Nem" : "Igen";
+        return YesNoEnum::getValue($this->active);
     }
 
     public function getLocalNameAttribute() {
-        return ($this->local == 0) ? "Nem" : "Igen";
+        return YesNoEnum::getValue($this->local);
     }
 
     public function getValidatedNameAttribute() {
-        return !empty($this->validated) ? ToolsClass::yesNo($this->validated) : "";
+        return !empty($this->validated) ? YesNoEnum::getValue($this->validated) : "";
     }
 }

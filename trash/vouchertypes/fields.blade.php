@@ -6,29 +6,19 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('local', __('Helyi:')) !!}
-        {!! Form::select('local', \App\Classes\ToolsClass::yesNoDDDW(), isset($vouchertypes) ? $vouchertypes->local : 0,
+        {!! Form::select('local', App\Enums\YesNoEnum::values(), isset($vouchertypes) ? $vouchertypes->local : 0,
                 ['class'=>'select2 form-control', 'id' => 'local','required' => true]) !!}
     </div>
     <div class="col-sm-6">
         {!! Form::label('localfund', __('Alap:'), ['id' => 'localfund_text']) !!}
-        {!! Form::select('localfund', \App\Classes\ToolsClass::yesNoDDDW(), isset($vouchertypes) ? $vouchertypes->localfund : 0,
+        {!! Form::select('localfund', App\Enums\YesNoEnum::values(), isset($vouchertypes) ? $vouchertypes->localfund : 0,
                 ['class'=>'select2 form-control', 'id' => 'localfund']) !!}
     </div>
     <div class="col-sm-6">
         {!! Form::label('localreplay', __('Ismételhető:'), ['id' => 'localreplay_text']) !!}
-        {!! Form::select('localreplay', \App\Classes\ToolsClass::yesNoDDDW(), isset($vouchertypes) ? $vouchertypes->localreplay : 0,
+        {!! Form::select('localreplay', App\Enums\YesNoEnum::values(), isset($vouchertypes) ? $vouchertypes->localreplay : 0,
                 ['class'=>'select2 form-control', 'id' => 'localreplay']) !!}
     </div>
-{{--    <div class="col-sm-6">--}}
-{{--        {!! Form::label('otherfund', __('Alap:'), ['id' => 'otherfund_text']) !!}--}}
-{{--        {!! Form::select('otherfund', \App\Classes\ToolsClass::yesNoDDDW(), isset($vouchertypes) ? $vouchertypes->otherfund : 0,--}}
-{{--                ['class'=>'select2 form-control', 'id' => 'otherfund']) !!}--}}
-{{--    </div>--}}
-{{--    <div class="col-sm-6">--}}
-{{--        {!! Form::label('otherreplay', __('Ismételhető:'), ['id' => 'otherreplay_text']) !!}--}}
-{{--        {!! Form::select('otherreplay', \App\Classes\ToolsClass::yesNoDDDW(), isset($vouchertypes) ? $vouchertypes->otherreplay : 0,--}}
-{{--                ['class'=>'select2 form-control', 'id' => 'otherreplay']) !!}--}}
-{{--    </div>--}}
     <div class="row col-sm-12">
         {!! Form::label('description', __('Megjegyzés:')) !!}
         {!! Form::textarea('description', null, ['class' => 'form-control','maxlength' => 500,'rows' => 4]) !!}

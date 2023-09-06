@@ -21,7 +21,7 @@
                                     <h5 class="text-right">{{ __('Aktív:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('active', ToolsClass::yesNoDDDW(), 1,
+                                    {!! Form::select('active', App\Enums\YesNoEnum::values(), 1,
                                             ['class'=>'select2 form-control', 'id' => 'active']) !!}
                                 </div>
                             </div>

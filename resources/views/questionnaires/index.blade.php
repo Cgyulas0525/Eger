@@ -21,14 +21,14 @@
                                     <h5 class="text-right">{{ __('Aktív:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('active', ToolsClass::yesNoDDDW(), 1,
+                                    {!! Form::select('active', App\Enums\YesNoEnum::values(), 1,
                                             ['class'=>'select2 form-control', 'id' => 'active']) !!}
                                 </div>
                                 <div class="mylabel col-sm-2">
                                     <h5 class="text-right">{{ __('Alap csomag:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('basicpackage', ToolsClass::yesNoAllSelect(), 2,
+                                    {!! Form::select('basicpackage', App\Enums\YesNoAllEnum::values(), 2,
                                             ['class'=>'select2 form-control', 'id' => 'basicpackage']) !!}
                                 </div>
                             </div>

@@ -21,21 +21,21 @@
                                     <h5 class="text-right">{{ __('Aktív:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('active', ToolsClass::yesNoDDDW(), 1,
+                                    {!! Form::select('active', App\Enums\YesNoEnum::values(), 1,
                                             ['class'=>'select2 form-control', 'id' => 'active']) !!}
                                 </div>
                                 <div class="mylabel col-sm-1">
                                     <h5 class="text-right">{{ __('Validált:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('validated', ToolsClass::yesNoAllSelect(), 2,
+                                    {!! Form::select('validated', App\Enums\YesNoAllEnum::values(), 2,
                                             ['class'=>'select2 form-control', 'id' => 'validated']) !!}
                                 </div>
                                 <div class="mylabel col-sm-1">
                                     <h5 class="text-right">{{ __('Helyi lakos:') }}</h5>
                                 </div>
                                 <div class="col-sm-1">
-                                    {!! Form::select('local', ToolsClass::yesNoAllSelect(), 2,
+                                    {!! Form::select('local', App\Enums\YesNoAllEnum::values(), 2,
                                             ['class'=>'select2 form-control', 'id' => 'local']) !!}
                                 </div>
                             </div>

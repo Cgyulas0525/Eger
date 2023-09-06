@@ -14,12 +14,12 @@
     <div class="row">
         <div class="form-group col-sm-6">
             {!! Form::label('required', __('Kötelező:')) !!}
-            {!! Form::select('required', ToolsClass::tfSelect(), 1,
+            {!! Form::select('required', App\Enums\TrueFalseEnum::values(), 1,
                     ['class'=>'select2 form-control', 'id' => 'required','required' => true]) !!}
         </div>
         <div class="form-group col-sm-6">
             {!! Form::label('readonly', __('Csak olvasható:')) !!}
-            {!! Form::select('readonly', ToolsClass::tfSelect(), 0,
+            {!! Form::select('readonly', App\Enums\TrueFalseEnum::values(), 0,
                     ['class'=>'select2 form-control', 'id' => 'readonly','required' => true]) !!}
         </div>
     </div>

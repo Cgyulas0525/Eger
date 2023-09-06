@@ -21,7 +21,7 @@
                                     {!! Form::label('local', 'Helyi:') !!}
                                 </div>
                                 <div class="col-sm-2">
-                                    {!! Form::select('local', ToolsClass::yesNoAllSelect(), 2,
+                                    {!! Form::select('local', App\Enums\YesNoAllEnum::values(), 2,
                                             ['class'=>'select2 form-control', 'id' => 'local']) !!}
                                 </div>
                             </div>
