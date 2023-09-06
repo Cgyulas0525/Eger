@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('partnerquestionnaries')) {
+            return;
+        }
+
         Schema::create('partnerquestionnaries', function (Blueprint $table) {
             $table->integer('id', true)->unique('partnerquestionnarie_id_uindex');
             $table->integer('partner_id');
@@ -22,7 +26,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->index(['questionnarie_id', 'partner_id'], 'partnerquestionnarie_questionnarie_id_partner_id_index');
-            $table->primary(['id']);
         });
     }
 

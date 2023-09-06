@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('lotterieclient')) {
+            return;
+        }
+
         Schema::create('lotterieclient', function (Blueprint $table) {
             $table->integer('id', true)->unique('lotterieclient_id_uindex');
             $table->integer('lotterie_id');
@@ -21,8 +25,6 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('uptated_at')->nullable();
             $table->softDeletes();
-
-            $table->primary(['id']);
         });
     }
 

@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('lotteriequestionnarie')) {
+            return;
+        }
+
         Schema::create('lotteriequestionnarie', function (Blueprint $table) {
             $table->integer('id', true)->unique('lotteriequestionnarie_id_uindex');
             $table->integer('lotterie_id');
@@ -23,7 +27,6 @@ return new class extends Migration
 
             $table->index(['lotterie_id', 'questionnarie_id']);
             $table->index(['questionnarie_id', 'lotterie_id']);
-            $table->primary(['id']);
         });
     }
 

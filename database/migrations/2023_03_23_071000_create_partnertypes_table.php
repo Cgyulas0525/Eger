@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('logitemtypes', function (Blueprint $table) {
-            $table->integer('id', true)->unique('logitemtypes_id_uindex');
-            $table->string('name', 100)->unique('logitemtypes_name_uindex');
+        if (Schema::hasTable('partnertypes')) {
+            return;
+        }
+
+        Schema::create('partnertypes', function (Blueprint $table) {
+            $table->integer('id', true)->unique('partnertypes_id_uindex');
+            $table->string('name', 100)->unique('partnertypes_name_uindex');
             $table->string('description', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('logitemtypes');
+        Schema::dropIfExists('partnertypes');
     }
 };

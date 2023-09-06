@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchertypes', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('name', 200);
-            $table->integer('local')->default(0);
-            $table->integer('localfund')->default(0);
-            $table->integer('localreplay')->default(0);
+        if (Schema::hasTable('logitemtypes')) {
+            return;
+        }
+
+        Schema::create('logitemtypes', function (Blueprint $table) {
+            $table->integer('id', true)->unique('logitemtypes_id_uindex');
+            $table->string('name', 100)->unique('logitemtypes_name_uindex');
             $table->string('description', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->unique(['id'], 'vouchertypes_id_uindex');
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchertypes');
+        Schema::dropIfExists('logitemtypes');
     }
 };

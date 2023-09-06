@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('logitems')) {
+            return;
+        }
+
         Schema::create('logitems', function (Blueprint $table) {
             $table->integer('id', true)->unique('logitem_id_uindex');
             $table->integer('logitemtype_id');
@@ -31,7 +35,6 @@ return new class extends Migration
             $table->index(['datatable', 'eventdatetime'], 'logitem_datatable_eventdatetime_index');
             $table->index(['logitemtype_id', 'id'], 'logitem_logitemtype_id_id_index');
             $table->index(['partnercontact_id', 'eventdatetime'], 'logitem_partnercontact_id_eventdatetime_index');
-            $table->primary(['id']);
         });
     }
 

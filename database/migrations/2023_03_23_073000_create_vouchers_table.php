@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('vouchers')) {
+            return;
+        }
+
         Schema::create('vouchers', function (Blueprint $table) {
             $table->integer('id', true);
             $table->string('name', 200);

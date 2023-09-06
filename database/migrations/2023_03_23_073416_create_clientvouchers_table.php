@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('clientvouchers')) {
+            return;
+        }
+
         Schema::create('clientvouchers', function (Blueprint $table) {
             $table->integer('id', true)->unique('clientvoucher_id_uindex');
             $table->integer('client_id');
@@ -27,7 +31,6 @@ return new class extends Migration
             $table->index(['used', 'client_id', 'voucher_id'], 'clientvoucher_used_client_id_voucher_id_index');
             $table->index(['used', 'voucher_id', 'client_id'], 'clientvoucher_used_voucher_id_client_id_index');
             $table->index(['voucher_id', 'client_id'], 'clientvoucher_voucher_id_client_id_index');
-            $table->primary(['id']);
         });
     }
 

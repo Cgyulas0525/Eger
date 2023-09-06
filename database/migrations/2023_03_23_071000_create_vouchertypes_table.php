@@ -13,12 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usertypes', function (Blueprint $table) {
+        if (Schema::hasTable('vouchertypes')) {
+            return;
+        }
+
+        Schema::create('vouchertypes', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('name', 191)->nullable()->index('IDX_UserStatus_Name');
-            $table->string('commit', 500)->nullable();
+            $table->string('name', 200);
+            $table->integer('local')->default(0);
+            $table->integer('localfund')->default(0);
+            $table->integer('localreplay')->default(0);
+            $table->string('description', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['id'], 'vouchertypes_id_uindex');
         });
     }
 
@@ -29,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usertypes');
+        Schema::dropIfExists('vouchertypes');
     }
 };

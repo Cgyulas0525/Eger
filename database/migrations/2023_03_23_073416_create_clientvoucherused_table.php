@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('clientvoucherused')) {
+            return;
+        }
+
         Schema::create('clientvoucherused', function (Blueprint $table) {
             $table->integer('id', true)->index();
             $table->integer('clientvoucher_id');
@@ -21,7 +25,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->index(['clientvoucher_id', 'usedtime']);
-            $table->primary(['id']);
         });
     }
 

@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('partnercontacts')) {
+            return;
+        }
+
         Schema::create('partnercontacts', function (Blueprint $table) {
             $table->integer('id', true)->unique('partnercontacts_id_uindex');
             $table->integer('partner_id');
@@ -28,7 +32,6 @@ return new class extends Migration
             $table->unique(['active', 'id'], 'partnercontacts_active_id_uindex');
             $table->unique(['partner_id', 'id'], 'partnercontacts_partner_id_id_uindex');
             $table->unique(['partner_id', 'name', 'id'], 'partnercontacts_partner_id_name_id_uindex');
-            $table->primary(['id']);
         });
     }
 

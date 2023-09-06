@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('validpostcodes')) {
+            return;
+        }
+
         Schema::create('validpostcodes', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('settlement_id');

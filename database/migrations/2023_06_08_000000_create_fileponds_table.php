@@ -13,6 +13,10 @@ class CreateFilepondsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('fileponds')) {
+            return;
+        }
+
         Schema::create('fileponds', function (Blueprint $table) {
             $table->id();
             $table->string('filename');

@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('partnertypes', function (Blueprint $table) {
-            $table->integer('id', true)->unique('partnertypes_id_uindex');
-            $table->string('name', 100)->unique('partnertypes_name_uindex');
-            $table->string('description', 500)->nullable();
+        if (Schema::hasTable('usertypes')) {
+            return;
+        }
+
+        Schema::create('usertypes', function (Blueprint $table) {
+            $table->integer('id', true);
+            $table->string('name', 191)->nullable()->index('IDX_UserStatus_Name');
+            $table->string('commit', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->primary(['id']);
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('partnertypes');
+        Schema::dropIfExists('usertypes');
     }
 };

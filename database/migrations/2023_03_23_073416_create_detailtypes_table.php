@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('detailtypes')) {
+            return;
+        }
+
         Schema::create('detailtypes', function (Blueprint $table) {
             $table->integer('id', true)->unique('detailtypes_id_uindex');
             $table->string('name', 100);
@@ -22,7 +26,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->index(['name', 'id']);
-            $table->primary(['id']);
         });
     }
 

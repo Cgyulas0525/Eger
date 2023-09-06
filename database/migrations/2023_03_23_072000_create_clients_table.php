@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('clients')) {
+            return;
+        }
+
         Schema::create('clients', function (Blueprint $table) {
             $table->integer('id', true)->unique('clients_id_uindex');
             $table->string('name', 100);
@@ -44,7 +48,6 @@ return new class extends Migration
             $table->index(['name', 'id']);
             $table->index(['postcode', 'settlement_id', 'address']);
             $table->index(['validated', 'id']);
-            $table->primary(['id']);
         });
     }
 
