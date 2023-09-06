@@ -10,11 +10,13 @@ class DeActive
 
     private $logitem;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->logitem = new LogItemInsert();
     }
 
-    public function handle($table) {
+    public function handle($table): void
+    {
         $model_name = ModelPath::makeModelPath($table);
         $datas = $model_name::where('active', 1)
             ->where('validityfrom', '<=', date('Y.m.d', strtotime('today')))

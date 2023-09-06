@@ -13,9 +13,8 @@ class QuestionnariePdf
      *
      * new querionnarie pdf file for client
      */
-    public function handle($client, $questionnarie)
+    public function handle($client, $questionnarie): string
     {
-
         $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->loadView('printing.printingEmail', ['body' => 'printing.questionnairePrintingBody', 'questionnaire' => $questionnarie, 'client' => $client]);
 
@@ -25,7 +24,6 @@ class QuestionnariePdf
         $pdf->save($path, 'UTF-8');
 
         return $path;
-
     }
 
 

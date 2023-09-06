@@ -10,12 +10,14 @@ class BasicVouchersSend
     private $vs;
     private $clientVoucherInsert;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->vs = new VoucherService();
         $this->clientVoucherInsert = new ClientVoucherInsert();
     }
 
-    public function handle($record) {
+    public function handle($record): void
+    {
         $vouchers = $this->vs->validFundVouchers();
         if (!empty($vouchers)) {
             foreach ($vouchers as $voucher) {

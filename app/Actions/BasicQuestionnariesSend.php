@@ -10,12 +10,14 @@ class BasicQuestionnariesSend
     private $questionnaireService;
     private $clientQuestionnarieInsert;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->questionnaireService = new QuestionnaireService();
         $this->clientQuestionnarieInsert = new ClientQuestionnarieInsert();
     }
 
-    public function handle($record) {
+    public function handle($record): void
+    {
         $questionnaries = $this->questionnaireService->activeBasicQuestionnaries();
         if (!empty($questionnaries)) {
             foreach ($questionnaries as $questionnarie) {

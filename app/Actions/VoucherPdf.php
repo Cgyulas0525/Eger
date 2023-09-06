@@ -6,9 +6,8 @@ use PDF;
 
 class VoucherPdf
 {
-    public function handle($client, $voucher)
+    public function handle($client, $voucher): string
     {
-
         $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])
             ->loadView('printing.printingEmail', ['body' => 'printing.voucherPrintingBody', 'voucher' => $voucher, 'client' => $client]);
 
@@ -18,7 +17,5 @@ class VoucherPdf
         $pdf->save($path, 'UTF-8');
 
         return $path;
-
     }
-
 }

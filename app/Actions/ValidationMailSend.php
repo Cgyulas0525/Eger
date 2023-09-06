@@ -14,33 +14,30 @@ use Event;
 class ValidationMailSend
 {
     private $clientService;
-    private $logItem;
     private $basicQuestionnariesSend;
     private $basicVouchersSend;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->clientService = new ClientService();
-        $this->logItem = new LogItemInsert();
         $this->basicQuestionnariesSend = new BasicQuestionnariesSend();
         $this->basicVouchersSend = new BasicVouchersSend();
     }
 
-    public function handle($record) {
+    public function handle($record)
+    {
 
         DB::transaction(function () use ($record) {
-
             $record->validated = $record->validated == 0 ? 1 : 0;
             $record->local = $this->clientService->localCheck($record->postcode);
             $record->save();
 
-            $this->logItem->iudRecord(8, $record->getTable(), $record->id);
+            (new LogItemInsert())->iudRecord(8, $record->getTable(), $record->id);
 
             $this->basicQuestionnariesSend->handle($record);
             $this->basicVouchersSend->handle($record);
 
             Event::dispatch(new SendValidationMail($record, 'emails.voucherMail'));
-
         });
-
     }
 }

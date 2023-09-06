@@ -8,8 +8,8 @@ use Carbon;
 
 class LogItemInsert
 {
-    public function iudRecord($logitemtype_id, $datatable, $record) {
-
+    public function iudRecord($logitemtype_id, $datatable, $record): void
+    {
         $logitem = new Logitems();
         $logitem->logitemtype_id = $logitemtype_id;
         $logitem->user_id = myUser::user()->id;
