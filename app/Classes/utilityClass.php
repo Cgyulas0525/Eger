@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Classes;
 
 use App\Models\Employee;
@@ -8,7 +9,8 @@ use App\Models\VoucherSequence;
 use App\Models\CustomerOrder;
 use App\Models\Currency;
 
-Class utilityClass{
+class utilityClass
+{
 
     /*
      * .env value change
@@ -18,24 +20,21 @@ Class utilityClass{
      *
      * @return void
      */
-    public static function changeEnvironmentVariable($key,$value)
+    public static function changeEnvironmentVariable($key, $value)
     {
         $path = base_path('.env');
 
-        if(is_bool(env($key)))
-        {
-            $old = env($key)? 'true' : 'false';
-        }
-        elseif(env($key)===null){
+        if (is_bool(env($key))) {
+            $old = env($key) ? 'true' : 'false';
+        } elseif (env($key) === null) {
             $old = 'null';
-        }
-        else{
+        } else {
             $old = env($key);
         }
 
         if (file_exists($path)) {
             file_put_contents($path, str_replace(
-                $key."=".$old, $key."=".$value, file_get_contents($path)
+                $key . "=" . $old, $key . "=" . $value, file_get_contents($path)
             ));
         }
 
@@ -61,7 +60,7 @@ Class utilityClass{
     {
         $filename = public_path('img/noAviableImage.jpg');
         $handle = fopen($filename, "rb");
-        $contents =  bin2hex ( fread( $handle, filesize($filename) ) );
+        $contents = bin2hex(fread($handle, filesize($filename)));
         fclose($handle);
         return $contents;
     }

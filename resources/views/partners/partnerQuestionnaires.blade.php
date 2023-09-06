@@ -16,9 +16,6 @@
         @include('adminlte-templates::common.errors')
 
         <div class="card">
-
-            {{--            {!! Form::model($questionnaires, ['route' => ['questionnaires.update', $questionnaires->id], 'method' => 'patch']) !!}--}}
-
             <div class="card-body">
                 <div class="row">
                     @include('partners.questionnariePartners')
@@ -26,14 +23,10 @@
             </div>
 
             <div class="card-footer">
-                {{--                {!! Form::submit(__('Ment'), ['class' => 'btn btn-primary']) !!}--}}
                 <a href="{{ route('partners.index') }}" class="btn btn-default">{{ __('Kilép') }}</a>
             </div>
 
-
             {!! Form::close() !!}
-
-
 
         </div>
     </div>
@@ -57,8 +50,15 @@
                 buttons: [],
                 ajax: "{{ route('questionnairedetails.index') }}",
                 columns: [
-                    {title: '<a class="btn btn-primary" title="Felvitel" href="{!! route('questionnairedetails.create') !!}"><i class="fa fa-plus-square"></i></a>',
-                        data: 'action', sClass: "text-center", width: '200px', name: 'action', orderable: false, searchable: false},
+                    {
+                        title: '<a class="btn btn-primary" title="Felvitel" href="{!! route('questionnairedetails.create') !!}"><i class="fa fa-plus-square"></i></a>',
+                        data: 'action',
+                        sClass: "text-center",
+                        width: '200px',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
                     {title: "{{ __('Név')}}", data: 'name', name: 'name'},
                 ]
             });

@@ -2,18 +2,16 @@
 
 namespace App\Actions;
 
-use Carbon\Carbon;
-use DB;
+use App\Models\Partnerquestionnaries;
 
 class PartnerQuestionnarieDelete
 {
-    public function handle($partner, $questionnaire) {
-        DB::table('partnerquestionnaries')
-            ->where('partner_id', $partner)
+    public function handle($partner, $questionnaire): void
+    {
+        Partnerquestionnaries::where('partner_id', $partner)
             ->where('questionnarie_id', $questionnaire)
             ->update([
-                'deleted_at' => Carbon::now()
+                'deleted_at' => now()->toDateTimeString(),
             ]);
-
     }
 }

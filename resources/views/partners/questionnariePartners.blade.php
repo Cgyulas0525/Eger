@@ -7,7 +7,7 @@
 @include('partners.partnerData')
 
 <div class="form-group col-sm-5 ">
-    @include('layouts.indextable', ['title' => 'Csatolt űrlapok'])
+    @include('layouts.indextable', ['tableTitle' => 'Csatolt űrlapok'])
 </div>
 
 <div class="form-group col-sm-2 d-flex align-items-center">
@@ -19,7 +19,7 @@
     <div class="clearfix"></div>
     <div class="box box-primary mt-3">
         <h4>{{ __('Választható űrlapok') }}</h4>
-        <div class="box-body"  >
+        <div class="box-body">
             <table class="table table-hover table-bordered notapartner w-100"></table>
         </div>
     </div>
@@ -107,8 +107,8 @@
                                 //display original data
                                 $.ajax({
                                     type: "GET",
-                                    url:"{{url('partnerAttachQuestionnarie')}}",
-                                    data: { questionnaire: data.id, partner: partner },
+                                    url: "{{url('partnerAttachQuestionnarie')}}",
+                                    data: {questionnaire: data.id, partner: partner},
                                     success: function (response) {
                                         console.log('Response:', response);
                                         window.location.href = actualUrl;
@@ -145,8 +145,8 @@
                                 //display original data
                                 $.ajax({
                                     type: "GET",
-                                    url:"{{url('partnerUnhookQuestionnarie')}}",
-                                    data: { questionnaire: data.questionnarieId, partner: partner },
+                                    url: "{{url('partnerUnhookQuestionnarie')}}",
+                                    data: {questionnaire: data.questionnarieId, partner: partner},
                                     success: function (response) {
                                         console.log('Response:', response);
                                         window.location.href = actualUrl;

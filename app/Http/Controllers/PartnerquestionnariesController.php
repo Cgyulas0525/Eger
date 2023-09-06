@@ -10,17 +10,17 @@ use App\Http\Controllers\AppBaseController;
 use App\Models\Partnerquestionnaries;
 
 use Illuminate\Http\Request;
-use Flash;
 use Response;
-use Auth;
 use DB;
 use DataTables;
 use myUser;
 use App\Classes\LogitemClass;
 
+use App\Services\PartnerQuestionnairesService;
+
 class PartnerquestionnariesController extends AppBaseController
 {
-    /** @var PartnerquestionnariesRepository $partnerquestionnariesRepository*/
+    /** @var PartnerquestionnariesRepository $partnerquestionnariesRepository */
     private $partnerquestionnariesRepository;
     private $logitem;
 
@@ -34,15 +34,11 @@ class PartnerquestionnariesController extends AppBaseController
     {
         return Datatables::of($data)
             ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $btn = '';
-//                $btn = $btn . '<a href="' . route('partnerquestionnaries.edit', [$row->id]) . '"
-//                             class="edit btn btn-success btn-sm editProduct" title="Módosítás"><i class="fa fa-paint-brush"></i></a>';
-//                $btn = $btn . '<a href="' . route('beforeDestroys', ['Partnerquestionnaries', $row["id"], 'partnerquestionnaries']) . '"
-//                                 class="btn btn-danger btn-sm deleteProduct" title="Törlés"><i class="fa fa-trash"></i></a>';
-                return $btn;
-            })
-            ->rawColumns(['action'])
+//            ->addColumn('action', function($row){
+//                $btn = '';
+//                return $btn;
+//            })
+//            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -56,7 +52,7 @@ class PartnerquestionnariesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if( myUser::check() ){
+        if (myUser::check()) {
 
             if ($request->ajax()) {
 
@@ -78,7 +74,7 @@ class PartnerquestionnariesController extends AppBaseController
      */
     public function pqIndex(Request $request, $id)
     {
-        if( myUser::check() ){
+        if (myUser::check()) {
 
             if ($request->ajax()) {
 
@@ -107,7 +103,7 @@ class PartnerquestionnariesController extends AppBaseController
      */
     public function qpIndex(Request $request, $id)
     {
-        if( myUser::check() ){
+        if (myUser::check()) {
 
             if ($request->ajax()) {
 
@@ -218,9 +214,9 @@ class PartnerquestionnariesController extends AppBaseController
      *
      * @param int $id
      *
+     * @return Response
      * @throws \Exception
      *
-     * @return Response
      */
     public function destroy($id)
     {
@@ -241,7 +237,7 @@ class PartnerquestionnariesController extends AppBaseController
      *
      * return array
      */
-    public static function DDDW() : array
+    public static function DDDW(): array
     {
         return [" "] + partnerquestionnaries::orderBy('name')->pluck('name', 'id')->toArray();
     }
@@ -252,18 +248,11 @@ class PartnerquestionnariesController extends AppBaseController
      * @param $id
      * @return \Illuminate\Support\Collection
      */
-    public static function PartnerQuestionnairesPartnerNotConnected($id) {
-        $data = DB::table('partners as t1')
-            ->whereNull('t1.deleted_at')
-            ->where('active', 1)
-            ->whereNotIn('id', DB::table('partnerquestionnaries as t2')->where('t2.questionnarie_id', $id)->pluck('t2.partner_id'))
-            ->orWhereIn('id', DB::table('partnerquestionnaries as t2')->where('t2.questionnarie_id', $id)->whereNotNull('t2.deleted_at')->pluck('t2.partner_id'))
-            ->get();;
-
-        return Datatables::of($data)
+    public static function PartnerQuestionnairesPartnerNotConnected($id): object
+    {
+        return Datatables::of((new PartnerQuestionnairesService)->PartnerQuestionnairesPartnerNotConnected($id))
             ->addIndexColumn()
             ->make(true);
-
     }
 
     /**
@@ -272,15 +261,9 @@ class PartnerquestionnariesController extends AppBaseController
      * @param $id
      * @return \Illuminate\Support\Collection
      */
-    public function PartnerQuestionnariesQuestionnarieNotConnected($id) {
-        $data = DB::table('questionnaires as t1')
-            ->whereNull('t1.deleted_at')
-            ->where('active', 1)
-            ->whereNotIn('id', DB::table('partnerquestionnaries as t2')->where('t2.partner_id', $id)->pluck('t2.questionnarie_id'))
-            ->orWhereIn('id', DB::table('partnerquestionnaries as t2')->where('t2.partner_id', $id)->whereNotNull('t2.deleted_at')->pluck('t2.questionnarie_id'))
-            ->get();
-
-        return Datatables::of($data)
+    public function PartnerQuestionnariesQuestionnarieNotConnected($id): object
+    {
+        return Datatables::of((new PartnerQuestionnairesService)->PartnerQuestionnairesQuestionnaireNotConnected($id))
             ->addIndexColumn()
             ->make(true);
     }

@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Settlements;
 use Illuminate\Http\Request;
-use DB;
-
 use App\Actions\ValidPostcodesInsert;
-use App\Actions\PartnerQuestionnarieInsert;
 use App\Actions\PartnerQuestionnarieDelete;
+use App\Models\Partnerquestionnaries;
 
 class MyApiController extends Controller
 {
 
-    public static function insertValidPostcodesRecord(Request $request) {
+    public static function insertValidPostcodesRecord(Request $request)
+    {
         $s = Settlements::where('name', $request->get('settlement'))->first();
         $validpostcodesinsert = new ValidPostcodesInsert();
         foreach (Settlements::where('name', $request->get('settlement'))->get() as $settlemen) {
@@ -27,22 +26,18 @@ class MyApiController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public static function partnerAttachQuestionnarie(Request $request) {
-
-        $partnerQuestionnarie = DB::table('partnerquestionnaries')
-                    ->where('partner_id', $request->get('partner'))
-                    ->where('questionnarie_id', $request->get('questionnaire'))
-                    ->first();
-
-        if (!empty($partnerQuestionnarie)) {
-
-            $pd = new PartnerQuestionnarieDelete();
-            $pd->handle($request->get('partner'), $request->get('questionnaire'));
-
-        } else {
-            $partnerQuestionnarieInsert = new PartnerQuestionnarieInsert();
-            $partnerQuestionnarieInsert->handle($request->get('partner'), $request->get('questionnaire'));
-        }
+    public static function partnerAttachQuestionnarie(Request $request)
+    {
+        Partnerquestionnaries::withTrashed()->updateOrCreate(
+            [
+                'partner_id' => $request->get('partner'),
+                'questionnarie_id' => $request->get('questionnaire'),
+            ],
+            [
+                'deleted_at' => NULL,
+                'updated_at' => now()->toDateTimeString(),
+            ]
+        )->restore();
 
         return back();
     }
@@ -53,11 +48,9 @@ class MyApiController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public static function partnerUnhookQuestionnarie(Request $request) {
-
-        $pd = new PartnerQuestionnarieDelete();
-        $pd->handle($request->get('partner'), $request->get('questionnaire'));
-
+    public static function partnerUnhookQuestionnarie(Request $request)
+    {
+        (new PartnerQuestionnarieDelete())->handle($request->get('partner'), $request->get('questionnaire'));
         return back();
     }
 }

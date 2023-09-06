@@ -3,7 +3,7 @@
     @if (isset($tableTitle))
         <h4>{{ __($tableTitle) }}</h4>
     @endif
-    <div class="box-body"  >
+    <div class="box-body">
         @if (isset($class))
             <table @class([ $class ])></table>
         @else
