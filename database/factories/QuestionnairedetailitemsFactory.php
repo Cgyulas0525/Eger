@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Questionnairedetailitems;
+use App\Models\Questionnairedetails;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionnairedetailitemsFactory extends Factory
@@ -19,14 +20,11 @@ class QuestionnairedetailitemsFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'questionnariedetail_id' => $this->faker->randomDigitNotNull,
-        'value' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'questionnariedetail_id' => Questionnairedetails::factory()->create(),
+            'value' => $this->faker->word,
         ];
     }
 }

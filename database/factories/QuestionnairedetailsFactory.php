@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Questionnaires;
+use App\Models\DetailTypes;
 use App\Models\Questionnairedetails;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,20 +21,17 @@ class QuestionnairedetailsFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'questionnaire_id' => $this->faker->randomDigitNotNull,
-        'name' => $this->faker->word,
-        'detailtype_id' => $this->faker->randomDigitNotNull,
-        'required' => $this->faker->randomDigitNotNull,
-        'readonly' => $this->faker->randomDigitNotNull,
-        'long' => $this->faker->randomDigitNotNull,
-        'rowcount' => $this->faker->randomDigitNotNull,
-        'description' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'questionnaire_id' => Questionnaires::factory()->create(),
+            'name' => $this->faker->word,
+            'detailtype_id' => DetailTypes::factory()->create(),
+            'required' => $this->faker->randomDigitNotNull,
+            'readonly' => $this->faker->randomDigitNotNull,
+            'long' => $this->faker->randomDigitNotNull,
+            'rowcount' => $this->faker->randomDigitNotNull,
+            'description' => $this->faker->word,
         ];
     }
 }
