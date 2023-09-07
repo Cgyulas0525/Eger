@@ -25,26 +25,26 @@ class ToolsClass
 
     public static function partnersLocalActive(array $active, array $vpactive): object
     {
-        return Partners::whereIn('t1.postcode', function ($query) use ($vpactive) {
-                return $query->from('validpostcodes as t2')->select('t2.postcode')->whereNull('t2.deleted_at')->whereIn('t2.active', $vpactive)->get();
+        return Partners::whereIn('postcode', function ($query) use ($vpactive) {
+                return $query->from('validpostcodes')->select('postcode')->whereNull('deleted_at')->whereIn('active', $vpactive)->get();
             })
-            ->whereIn('t1.active', $active)
+            ->whereIn('active', $active)
             ->get();
     }
 
     public static function partnersNonLocalActive(array $active, array $vpactive): object
     {
-        return Partners::whereNotIn('t1.postcode', function ($query) use ($vpactive) {
-                return $query->from('validpostcodes as t2')->select('t2.postcode')->whereNull('t2.deleted_at')->whereIn('t2.active', $vpactive)->get();
+        return Partners::whereNotIn('postcode', function ($query) use ($vpactive) {
+                return $query->from('validpostcodes')->select('postcode')->whereNull('deleted_at')->whereIn('active', $vpactive)->get();
             })
-            ->whereIn('t1.active', $active)
+            ->whereIn('active', $active)
             ->get();
     }
 
     public static function toBeValidated(): object
     {
-        return Clients::where('t1.active', '=', 1)
-                ->where('t1.validated', '=', 0)
+        return Clients::where('active', '=', 1)
+                ->where('validated', '=', 0)
                 ->get();
     }
 
