@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Vouchers;
+use App\Models\Vouchertypes;
+use App\Models\Partners;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VouchersFactory extends Factory
@@ -23,19 +25,16 @@ class VouchersFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-        'vouchertype_id' => $this->faker->randomDigitNotNull,
-        'partner_id' => $this->faker->randomDigitNotNull,
-        'content' => $this->faker->word,
-        'validityfrom' => $this->faker->word,
-        'validityto' => $this->faker->word,
-        'qrcode' => $this->faker->word,
-        'discount' => $this->faker->randomDigitNotNull,
-        'discountpercent' => $this->faker->randomDigitNotNull,
-        'usednumber' => $this->faker->randomDigitNotNull,
-        'active' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'vouchertype_id' => Vouchertypes::factory()->create(),
+            'partner_id' => Partners::factory()->create(),
+            'content' => $this->faker->word,
+            'validityfrom' => $this->faker->date,
+            'validityto' => $this->faker->date,
+            'qrcode' => $this->faker->word,
+            'discount' => $this->faker->randomDigitNotNull,
+            'discountpercent' => $this->faker->randomDigitNotNull,
+            'usednumber' => $this->faker->randomDigitNotNull,
+            'active' => $this->faker->randomDigitNotNull,
         ];
     }
 }

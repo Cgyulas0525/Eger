@@ -23,13 +23,10 @@ class VouchertypesFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-        'local' => $this->faker->randomDigitNotNull,
-        'localfund' => $this->faker->randomDigitNotNull,
-        'localreplay' => $this->faker->randomDigitNotNull,
-        'description' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'local' => $this->faker->randomDigitNotNull,
+            'localfund' => $this->faker->randomDigitNotNull,
+            'localreplay' => $this->faker->randomDigitNotNull,
+            'description' => $this->faker->word,
         ];
     }
 }

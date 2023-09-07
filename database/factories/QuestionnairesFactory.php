@@ -23,15 +23,12 @@ class QuestionnairesFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'validityfrom' => $this->faker->word,
-            'validityto' => $this->faker->word,
+            'validityfrom' => $this->faker->date,
+            'validityto' => $this->faker->date,
             'active' => $this->faker->randomDigitNotNull,
             'basicpackage' => $this->faker->randomDigitNotNull,
             'qrcode' => $this->faker->word,
             'description' => $this->faker->word,
-            'created_at' => $this->faker->date('Y-m-d H:i:s'),
-            'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-            'deleted_at' => $this->faker->date('Y-m-d H:i:s')
         ];
     }
 }

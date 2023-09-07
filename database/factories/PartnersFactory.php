@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Partners;
+use App\Models\PartnerTypes;
+use App\Models\Settlements;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PartnersFactory extends Factory
@@ -22,22 +24,18 @@ class PartnersFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->randomDigitNotNull,
-        'name' => $this->faker->word,
-        'partnertype_id' => $this->faker->randomDigitNotNull,
-        'taxnumber' => $this->faker->word,
-        'bankaccount' => $this->faker->word,
-        'postcode' => $this->faker->randomDigitNotNull,
-        'settlement_id' => $this->faker->randomDigitNotNull,
-        'address' => $this->faker->word,
-        'email' => $this->faker->word,
-        'phonenumber' => $this->faker->word,
-        'description' => $this->faker->word,
-        'active' => $this->faker->randomDigitNotNull,
-        'logourl' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'name' => $this->faker->word,
+            'partnertype_id' => PartnerTypes::factory()->create(),
+            'taxnumber' => $this->faker->word,
+            'bankaccount' => $this->faker->word,
+            'postcode' => $this->faker->randomDigitNotNull,
+            'settlement_id' => Settlements::factory()->create(),
+            'address' => $this->faker->word,
+            'email' => $this->faker->word,
+            'phonenumber' => $this->faker->word,
+            'description' => $this->faker->word,
+            'active' => $this->faker->randomDigitNotNull,
+            'logourl' => $this->faker->word,
         ];
     }
 }
