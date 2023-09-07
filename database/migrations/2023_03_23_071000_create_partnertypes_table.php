@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('description', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->primary(['id']);
         });
     }
 
