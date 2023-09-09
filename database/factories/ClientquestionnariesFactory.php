@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Clientquestionnaries;
+use App\Models\Questionnaires;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Clients;
 
 class ClientquestionnariesFactory extends Factory
 {
@@ -19,17 +21,14 @@ class ClientquestionnariesFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'client_id' => $this->faker->randomDigitNotNull,
-        'questionnarie_id' => $this->faker->randomDigitNotNull,
-        'posted' => $this->faker->word,
-        'retrieved' => $this->faker->word,
-        'description' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'client_id' => Clients::factory()->create(),
+            'questionnarie_id' => Questionnaires::factory()->create(),
+            'posted' => $this->faker->date,
+            'retrieved' => $this->faker->date,
+            'description' => $this->faker->word,
         ];
     }
 }
