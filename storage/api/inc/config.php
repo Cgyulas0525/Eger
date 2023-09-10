@@ -18,4 +18,3 @@ define('MYSQL_CHARSET', 'utf8');
 define('VALIDFROM', date('Y-m-d H:i:s', strtotime('midnight')));
 define('DATE_NOW', date('Y-m-d H:i:s', strtotime('now')));
 
-/* ide kell vmi */
