@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Settlements;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use File;
+use Illuminate\Support\Facades\Storage;
 
 class SettlementsSeeder extends Seeder
 {
@@ -14,11 +14,11 @@ class SettlementsSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Settlements::truncate();
 
-        $json = File::get(storage_path() . '/data/settlements.data');
+        $json = Storage::disk('data')->get('settlements.data');;
         $settlements = json_decode($json, true);
 
         foreach ($settlements as $key => $settlement) {
