@@ -25,7 +25,7 @@ class SettlementsSeeder extends Seeder
             Settlements::factory()->create(
                 [
                     'name' => $settlement['name'],
-                    'postcode' => (int) $settlement['postcode'],
+                    'postcode' => $settlement['postcode'],
                     'description' => $settlement['description'],
                 ]
             );
