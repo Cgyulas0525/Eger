@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -61,12 +62,13 @@ class DetailTypes extends Model
 
     protected $append = ['listingName'];
 
-    public function getListingNameAttribute() {
+    public function getListingNameAttribute(): string
+    {
         return $this->listing == 1 ? 'Igen' : 'Nem';
     }
 
-    public function questionnairedetails() {
+    public function questionnairedetails(): string|HasMany
+    {
         return $this->hasMany(Questionnairedetails::class, 'detailtype_id');
     }
-
 }

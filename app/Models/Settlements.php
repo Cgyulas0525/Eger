@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -57,17 +58,18 @@ class Settlements extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function validpostcodes() {
+    public function validpostcodes(): string|HasMany
+    {
         return $this->hasMany(Validpostcodes::class, 'settlement_id');
     }
 
-    public function partners() {
+    public function partners(): string|HasMany
+    {
         return $this->hasMany(Partners::class, 'settlement_id');
     }
 
-    public function clients() {
+    public function clients(): string|HasMany
+    {
         return $this->hasMany(Clients::class, 'settlement_id');
     }
-
-
 }

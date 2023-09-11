@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Partnercontacts
@@ -75,8 +76,8 @@ class Partnercontacts extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function partner() {
+    public function partner(): string|BelongsTo
+    {
         return $this->belongsTo(Partners::class, 'partner_id');
     }
-
 }

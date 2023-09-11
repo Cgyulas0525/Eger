@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Questionnairedetails
@@ -79,20 +81,23 @@ class Questionnairedetails extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function questionnaire() {
+    public function questionnaire(): string|BelongsTo
+    {
         return $this->belongsTo(Questionnaires::class, 'questionnaire_id');
     }
 
-    public function detailtype() {
+    public function detailtype(): string|BelongsTo
+    {
         return $this->belongsTo(DetailTypes::class, 'detailtype_id');
     }
 
-    public function questionnairedetailitems() {
+    public function questionnairedetailitems(): string|HasMany
+    {
         return $this->hasMany(Questionnairedetailitems::class, 'questionnariedetail_id');
     }
 
-    public function clientquestionnariedetails() {
+    public function clientquestionnariedetails(): string|HasMany
+    {
         return $this->hasMany(Clientquestionnariedetails::class, 'questionnariedetail_id');
     }
-
 }

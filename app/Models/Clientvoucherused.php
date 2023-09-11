@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -55,8 +56,8 @@ class Clientvoucherused extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function clientvoucher() {
+    public function clientvoucher(): string|BelongsTo
+    {
         return $this->belongsTo(Clientvouchers::class, 'clientvoucher_id');
     }
-
 }

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Vouchers
@@ -91,17 +93,18 @@ class Vouchers extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function partner() {
+    public function partner(): string|BelongsTo
+    {
         return $this->belongsTo(Partners::class, 'partner_id');
     }
 
-    public function vouchertype() {
+    public function vouchertype(): string|BelongsTo
+    {
         return $this->belongsTo(Vouchertypes::class, 'vouchertype_id');
     }
 
-    public function clientvouchers() {
+    public function clientvouchers(): string|HasMany
+    {
         return $this->hasMany(Clientvouchers::class, 'voucher_id');
     }
-
-
 }

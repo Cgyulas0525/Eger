@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Classes\ToolsClass;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
 use App\Enums\YesNoEnum;
 use App\Enums\GenderEnum;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Clients
@@ -136,38 +138,46 @@ class Clients extends Model
 
     protected $appends = ['fullAddress', 'genderName', 'activeName', 'localName', 'validatedName'];
 
-    public function settlement() {
+    public function settlement(): string|BelongsTo
+    {
         return $this->belongsTo(Settlements::class, 'settlement_id');
     }
 
-    public function clientvouchers() {
+    public function clientvouchers(): string|HasMany
+    {
         return $this->hasMany(Clientvouchers::class, 'client_id');
     }
 
-    public function clientquestionnaries() {
+    public function clientquestionnaries(): string|HasMany
+    {
         return $this->hasMany(Clientquestionnaries::class, 'client_id');
     }
 
 
-    public function getFullAddressAttribute() {
+    public function getFullAddressAttribute(): string
+    {
         return ((!empty($this->postcode) ? $this->postcode : "") . " " .
-            (!empty($this->settlement_id) ? $this->settlement->name : ""). " " .
+            (!empty($this->settlement_id) ? $this->settlement->name : "") . " " .
             (!empty($this->address) ? $this->address : ""));
     }
 
-    public function getGenderNameAttribute() {
+    public function getGenderNameAttribute(): string
+    {
         return !empty($this->gender) ? GenderEnum::getValue($this->gender) : "";
     }
 
-    public function getActiveNameAttribute() {
+    public function getActiveNameAttribute(): string
+    {
         return YesNoEnum::getValue($this->active);
     }
 
-    public function getLocalNameAttribute() {
+    public function getLocalNameAttribute(): string
+    {
         return YesNoEnum::getValue($this->local);
     }
 
-    public function getValidatedNameAttribute() {
+    public function getValidatedNameAttribute(): string
+    {
         return !empty($this->validated) ? YesNoEnum::getValue($this->validated) : "";
     }
 }

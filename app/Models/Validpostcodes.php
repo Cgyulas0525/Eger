@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Validpostcodes
@@ -63,8 +64,8 @@ class Validpostcodes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function settlement() {
+    public function settlement(): string|BelongsTo
+    {
         return $this->belongsTo(Settlements::class, 'settlement_id');
     }
-
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -55,8 +56,8 @@ class Usertypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function users() {
+    public function users(): string|HasMany
+    {
         return $this->hasMany(Users::class, 'usertypes_id');
     }
-
 }

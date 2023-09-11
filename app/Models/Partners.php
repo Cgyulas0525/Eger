@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
 
 /**
  * Class Partners
@@ -99,30 +101,35 @@ class Partners extends Model
 
     protected $appends = ['fullAddress'];
 
-    public function settlement() {
+    public function settlement(): string|BelongsTo
+    {
         return $this->belongsTo(Settlements::class, 'settlement_id');
     }
 
-    public function partnertype() {
+    public function partnertype(): string|BelongsTo
+    {
         return $this->belongsTo(PartnerTypes::class, 'partnertype_id');
     }
 
-    public function getFullAddressAttribute() {
+    public function getFullAddressAttribute(): string
+    {
         return ((!empty($this->postcode) ? $this->postcode : "") . " " .
-            (!empty($this->settlement_id) ? $this->settlement->name : ""). " " .
+            (!empty($this->settlement_id) ? $this->settlement->name : "") . " " .
             (!empty($this->address) ? $this->address : ""));
     }
 
-    public function partnercontacts() {
+    public function partnercontacts(): string|HasMany
+    {
         return $this->hasMany(Partnercontacts::class, 'partner_id');
     }
 
-    public function vouchers() {
+    public function vouchers(): string|HasMany
+    {
         return $this->hasMany(Vouchers::class, 'partner_id');
     }
 
-    public function partnerquestionnaries() {
+    public function partnerquestionnaries(): string|HasMany
+    {
         return $this->hasMany(Partnerquestionnaries::class, 'partner_id');
     }
-
 }

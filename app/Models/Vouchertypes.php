@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -69,8 +70,8 @@ class Vouchertypes extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function vouchers() {
+    public function vouchers(): string|HasMany
+    {
         return $this->hasMany(Vouchers::class, 'vouchertype_id');
     }
-
 }

@@ -54,6 +54,4 @@ class Logitemtypes extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
-
-
 }

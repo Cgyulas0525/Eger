@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -75,19 +76,22 @@ class Questionnaires extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function questionnairedetails() {
+    public function questionnairedetails(): string|HasMany
+    {
         return $this->hasMany(Questionnairedetails::class, 'questionnaire_id');
     }
 
-    public function clientquestionnarie() {
+    public function clientquestionnarie(): string|HasMany
+    {
         return $this->hasMany(Clientquestionnaries::class, 'questionnarie_id');
     }
 
-    public function partnerquestionnarie() {
+    public function partnerquestionnarie(): string|HasMany
+    {
         return $this->hasMany(Partnerquestionnaries::class, 'questionnarie_id');
     }
 
-    public function questionnairedetailitems(): HasManyThrough
+    public function questionnairedetailitems(): string|HasManyThrough
     {
         return $this->hasManyThrough(
             Questionnairedetailitems::class,
@@ -98,5 +102,4 @@ class Questionnaires extends Model
             'id' // Local key on the environments table...
         );
     }
-
 }

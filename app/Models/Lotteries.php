@@ -74,6 +74,4 @@ class Lotteries extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
-
-
 }

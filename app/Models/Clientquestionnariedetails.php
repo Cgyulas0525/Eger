@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -63,11 +64,13 @@ class Clientquestionnariedetails extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function clientquestionnarie() {
+    public function clientquestionnarie(): string|BelongsTo
+    {
         return $this->belongsTo(Clientquestionnaries::class, 'clientquestionnarie_id');
     }
 
-    public function questionnairedetail() {
+    public function questionnairedetail(): string|BelongsTo
+    {
         return $this->belongsTo(Questionnairedetails::class, 'questionnariedetail_id');
     }
 

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
@@ -78,8 +79,8 @@ class Users extends Model
         'deleted_at' => 'nullable'
     ];
 
-    public function usertype() {
+    public function usertype(): string|BelongsTo
+    {
         return $this->belongsTo(Usertypes::class, 'usertypes_id');
     }
-
 }
