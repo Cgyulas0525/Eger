@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Kirschbaum\PowerJoins\PowerJoins;
 use App\Enums\YesNoEnum;
 use App\Enums\GenderEnum;
-use Yajra\DataTables\Html\Editor\Fields\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Clients
