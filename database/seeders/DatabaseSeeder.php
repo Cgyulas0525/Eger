@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Usertypes;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            UsertypesSeeder::class,
+            UsersSeeder::class,
             SettlementsSeeder::class,
             VouchertypesSeeder::class,
         ]);
