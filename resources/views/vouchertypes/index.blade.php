@@ -57,6 +57,9 @@
                     {title: '<a class="btn btn-primary" title="Felvitel" href="{!! route('vouchertypes.create') !!}"><i class="fa fa-plus-square"></i></a>',
                         data: 'action', sClass: "text-center", width: '200px', name: 'action', orderable: false, searchable: false},
                     {title: "{{ __('Név')}}", data: 'name', name: 'name'},
+                    {title: "{{ __('Helyi')}}", data: 'localName', name: 'localName'},
+                    {title: "{{ __('Alap')}}", data: 'localFundName', name: 'localFundName'},
+                    {title: "{{ __('Ismételhető')}}", data: 'localReplayName', name: 'localReplayName'},
                 ]
             });
 

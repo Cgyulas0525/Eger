@@ -15,5 +15,14 @@ enum YesNoAllEnum: string
     case NO = 'Nem';
     case YES = 'Igen';
     case ALL = 'Mind';
+
+    public static function getWithCode($code): string
+    {
+        return match($code) {
+            0 => 'Nem',
+            1 => 'Igen',
+            2 => 'Mind',
+        };
+    }
 }
 

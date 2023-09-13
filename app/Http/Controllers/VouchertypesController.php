@@ -17,6 +17,7 @@ use DB;
 use DataTables;
 use myUser;
 use App\Classes\LogitemClass;
+use App\Enums\YesNoAllEnum;
 
 class VouchertypesController extends AppBaseController
 {
@@ -34,6 +35,15 @@ class VouchertypesController extends AppBaseController
     {
         return Datatables::of($data)
             ->addIndexColumn()
+            ->addColumn('localName', function ($data) {
+                return (YesNoAllEnum::getWithCode($data->local));
+            })
+            ->addColumn('localFundName', function ($data) {
+                return (YesNoAllEnum::getWithCode($data->localfund));
+            })
+            ->addColumn('localReplayName', function ($data) {
+                return (YesNoAllEnum::getWithCode($data->localreplay));
+            })
             ->addColumn('action', function($row){
                 $btn = '<a href="' . route('vouchertypes.edit', [$row->id]) . '"
                              class="edit btn btn-success btn-sm editProduct" title="Módosítás"><i class="fa fa-paint-brush"></i></a>';

@@ -6,7 +6,7 @@
     </div>
     <div class="col-sm-4">
         {!! Form::label('local', __('Helyi:')) !!}
-        {!! Form::select('local', App\Enums\YesNoAllEnum::values() isset($vouchertypes) ? $vouchertypes->local : 0,
+        {!! Form::select('local', App\Enums\YesNoAllEnum::values(), isset($vouchertypes) ? $vouchertypes->local : 0,
                 ['class'=>'select2 form-control', 'id' => 'local','required' => true]) !!}
     </div>
     <div class="col-sm-6">
