@@ -53,11 +53,10 @@ class SeedersService
                         'description' => $item['description'],
                     ],
                     'DetailTypes' => [
-                            'name' => $item['name'],
-                            'listing' => $item['listing'],
-                            'description' => $item['description'],
+                        'name' => $item['name'],
+                        'listing' => $item['listing'],
+                        'description' => $item['description'],
                     ],
-
                 }
             );
         }
