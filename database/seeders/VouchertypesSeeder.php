@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Vouchertypes;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
+use Database\Seeders\Services\SeedersService;
 
 class VouchertypesSeeder extends Seeder
 {
@@ -16,21 +14,6 @@ class VouchertypesSeeder extends Seeder
      */
     public function run(): void
     {
-        Vouchertypes::truncate();
-
-        $json = Storage::disk('data')->get('vouchertypes.data');
-        $vts = json_decode($json, true);
-
-        foreach ($vts as $key => $vt) {
-            Vouchertypes::factory()->create(
-                [
-                    'name' => $vt['name'],
-                    'local' => $vt['local'],
-                    'localfund' => $vt['localfund'],
-                    'localreplay' => $vt['localreplay'],
-                    'description' => $vt['description'],
-                ]
-            );
-        }
+        (new SeedersService())->handle('VoucherTypes', 'vouchertypes.data');
     }
 }
